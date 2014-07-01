@@ -4,7 +4,6 @@ import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.GridLayout;
-import java.awt.Image;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -12,7 +11,6 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
-import java.net.URL;
 import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
@@ -363,11 +361,7 @@ public class Chess extends JFrame {
            
        });
        
-       
-       URL imageURL = getClass().getResource("/Icons/rook_" + Piece.pieces[x[0]][y[0]].getColor() + "_" + (board[x[1]][y[1]].getBackground().getRGB() == new Color(255, 206, 158).getRGB() ? "light" : "dark") + ".png");
-       Image image2 = Toolkit.getDefaultToolkit().getImage(imageURL);
-       ImageIcon icon = new ImageIcon(image2);
-       rook.setIcon(icon);
+       rook.setIcon(loadIcon("/Icons/rook_" + Piece.pieces[x[0]][y[0]].getColor() + "_" + (board[x[1]][y[1]].getBackground().getRGB() == new Color(255, 206, 158).getRGB() ? "light" : "dark") + ".png"));
        
        JLabel bishop = new JLabel();
        bishop.setPreferredSize(new Dimension(26, 26));
@@ -411,10 +405,7 @@ public class Chess extends JFrame {
            
        });
        
-       imageURL = getClass().getResource("/Icons/bishop_" + Piece.pieces[x[0]][y[0]].getColor() + "_" + (board[x[1]][y[1]].getBackground().getRGB() == new Color(255, 206, 158).getRGB() ? "light" : "dark") + ".png");
-       image2 = Toolkit.getDefaultToolkit().getImage(imageURL);
-       icon = new ImageIcon(image2);
-       bishop.setIcon(icon);
+       bishop.setIcon(loadIcon("/Icons/bishop_" + Piece.pieces[x[0]][y[0]].getColor() + "_" + (board[x[1]][y[1]].getBackground().getRGB() == new Color(255, 206, 158).getRGB() ? "light" : "dark") + ".png"));
        
        JLabel queen = new JLabel();
        queen.setPreferredSize(new Dimension(26, 26));
@@ -458,10 +449,7 @@ public class Chess extends JFrame {
            
        });
        
-       imageURL = getClass().getResource("/Icons/queen_" + Piece.pieces[x[0]][y[0]].getColor() + "_" + (board[x[1]][y[1]].getBackground().getRGB() == new Color(255, 206, 158).getRGB() ? "light" : "dark") + ".png");
-       image2 = Toolkit.getDefaultToolkit().getImage(imageURL);
-       icon = new ImageIcon(image2);
-       queen.setIcon(icon);
+       queen.setIcon(loadIcon("/Icons/queen_" + Piece.pieces[x[0]][y[0]].getColor() + "_" + (board[x[1]][y[1]].getBackground().getRGB() == new Color(255, 206, 158).getRGB() ? "light" : "dark") + ".png"));
        
        
        JLabel knight = new JLabel();
@@ -505,11 +493,8 @@ public class Chess extends JFrame {
            
            
        });
-       
-       imageURL = getClass().getResource("/Icons/knight_" + Piece.pieces[x[0]][y[0]].getColor() + "_" + (board[x[1]][y[1]].getBackground().getRGB() == new Color(255, 206, 158).getRGB() ? "light" : "dark") + ".png");
-       image2 = Toolkit.getDefaultToolkit().getImage(imageURL);
-       icon = new ImageIcon(image2);
-       knight.setIcon(icon);
+
+       knight.setIcon(loadIcon("/Icons/knight_" + Piece.pieces[x[0]][y[0]].getColor() + "_" + (board[x[1]][y[1]].getBackground().getRGB() == new Color(255, 206, 158).getRGB() ? "light" : "dark") + ".png"));
        
        panel4.add(rook);
        panel4.add(new JLabel());
@@ -538,10 +523,7 @@ public class Chess extends JFrame {
                     board[k][l].setIcon(null);
                 }
                 else {
-                    URL imageURL = getClass().getResource(getIcon(Piece.pieces[k][l], k, l));
-                    Image image2 = Toolkit.getDefaultToolkit().getImage(imageURL);
-                    ImageIcon icon = new ImageIcon(image2);
-                    board[k][l].setIcon(icon); 
+                    board[k][l].setIcon(loadIcon(getIcon(Piece.pieces[k][l], k, l))); 
                }
            }
         }
@@ -624,10 +606,7 @@ public class Chess extends JFrame {
                             board[k][l].setIcon(null);
                         }
                         else {
-                            URL imageURL = getClass().getResource(getIcon(Piece.pieces[k][l], k, l));
-                            Image image2 = Toolkit.getDefaultToolkit().getImage(imageURL);
-                            ImageIcon icon = new ImageIcon(image2);
-                            board[k][l].setIcon(icon); 
+                            board[k][l].setIcon(loadIcon(getIcon(Piece.pieces[k][l], k, l))); 
                         }
                     }
                 }
@@ -712,6 +691,11 @@ public class Chess extends JFrame {
                 
                 stop.setEnabled(true);
         
+    }
+    
+    private ImageIcon loadIcon(String path) {
+        
+        return new ImageIcon(getClass().getResource(path));
     }
 
     public static void main(String[] args) throws UnsupportedLookAndFeelException {
