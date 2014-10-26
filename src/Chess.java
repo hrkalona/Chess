@@ -67,6 +67,7 @@ public class Chess extends JFrame {
         
         super();
         setSize(550, 450);
+        setTitle("Chess");
         
         piece_selected = false;
         
